@@ -8,8 +8,6 @@ import java.util.Map;
 import com.icbc.mrm.tools.me.Context;
 import com.icbc.mrm.tools.me.expr.impl.RawExpr;
 
-
-
 public class UnitTest {
 
 	
@@ -106,5 +104,4 @@ public class UnitTest {
 			return false;
 		}
 	}
-
 }
