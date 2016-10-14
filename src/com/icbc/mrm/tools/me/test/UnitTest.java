@@ -6,12 +6,17 @@ import java.util.List;
 import java.util.Map;
 
 import com.icbc.mrm.tools.me.Context;
-import com.icbc.mrm.tools.me.expr.impl.RawExpr;
+import com.icbc.mrm.tools.me.ExprEvaluator;
+import com.icbc.mrm.tools.me.ExprEvaluator.Algorithm;
 
 public class UnitTest {
-
+	public static void main(String[] args){
+		for(Algorithm a : Algorithm.values()){
+			test(a);
+		}
+	}
 	
-	public static void main(String[] args) {
+	public static boolean test(Algorithm algo) {
 		Map<String,Object> a = new HashMap<String,Object>();
 		List<Object> b = new ArrayList<Object>();
 		b.add("abcde");
@@ -73,7 +78,7 @@ public class UnitTest {
 		for(;i<expr.length;i++){
 			String r = null;
 			try{
-				r = new RawExpr(expr[i]).evaluate();
+				r = ExprEvaluator.evaluate(expr[i],algo);
 			}catch(Exception ex){
 				
 			}
@@ -86,6 +91,7 @@ public class UnitTest {
 			}
 		}
 		System.out.println("OK Cases:"+intOk+"        ,FAIL Cases:"+intFail);
+		return intFail == 0;
 	}
 	public static boolean check(String a,String b){
 		try{
